@@ -1,14 +1,16 @@
 import Product from "@/libs/models/Product"
 import { connectMongoDB } from "@/libs/MongoConnext"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
-export async function GET() {
+export async function DELETE(request: NextRequest, URLParams: any) {
     try {
+        const id = URLParams.params.id
+
         await connectMongoDB()
 
-        const data = await Product.find()
+        await Product.findByIdAndDelete(id);
 
-        return NextResponse.json(data)
+        return NextResponse.json({msg: "Product Deleted Successfully"});
     } catch (error) {
         return NextResponse.json({
             error,

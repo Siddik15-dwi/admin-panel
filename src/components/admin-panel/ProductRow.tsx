@@ -5,6 +5,9 @@ import { Dispatch, SetStateAction } from "react";
 import Image from "next/image"; 
 import { CiEdit } from "react-icons/ci";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { setLoading } from "@/redux/features/loadingSlice";
+import axios from "axios";
+import { makeToast } from "@/utils/helper";
 
 interface PropsType {
   srNo: number;
@@ -22,9 +25,28 @@ const ProductRow = ({ srNo, setOpenPopup, setUpdateTable, product }: PropsType) 
   };
 
     const onDelete = () => {
+      dispatch(setLoading(true))
 
-    }
+      const payLoad = {
+        fileKey: product.fileKey,
+      }
 
+      axios
+      .delete("/api/uploadthing", {data: payLoad})
+      .then(res => {console.log(res.data)
+
+        axios
+        .delete(`/api/delete_product/${product._id}`)
+        .then(res => {console.log(res.data);
+          makeToast("Product deleted successfully");
+          setUpdateTable((prevState) => !prevState);
+
+        }).catch((err) => console.log(err)
+
+      ).finally(() => dispatch(setLoading(false)));
+
+      }).catch((err) => console.log(err));
+    };
 
   return <tr>
     <td>
