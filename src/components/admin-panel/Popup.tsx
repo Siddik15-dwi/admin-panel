@@ -62,7 +62,7 @@ const handleSubmit = (e: FormEvent) => {
             <input
                 className="border-block border-gray-500 outline-none px-4 py-2 rounded-lg w-fit"
                 type="text"
-                placeholder="Category"
+                placeholder="category"
                 value={inputData.category}
                 onChange={(e) =>
                     setInputData({...inputData, category: e.target.value })
@@ -90,4 +90,4 @@ const handleSubmit = (e: FormEvent) => {
   </div>
 };
 
-export default Popup
+export default Popup;

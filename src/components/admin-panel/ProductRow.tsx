@@ -16,7 +16,12 @@ interface PropsType {
   product: IProduct;
 }
 
-const ProductRow = ({ srNo, setOpenPopup, setUpdateTable, product }: PropsType) => {
+const ProductRow = ({ 
+  srNo, 
+  setOpenPopup, 
+  setUpdateTable, 
+  product 
+}: PropsType) => {
   const dispatch = useAppDispatch();
 
   const onEdit = () => {
@@ -78,4 +83,4 @@ const ProductRow = ({ srNo, setOpenPopup, setUpdateTable, product }: PropsType) 
   </tr>
 };
 
-export default ProductRow
+export default ProductRow;

@@ -1,15 +1,13 @@
-import Product from "@/libs/models/Product"
-import { connectMongoDB } from "@/libs/MongoConnext"
-import { NextRequest, NextResponse } from "next/server"
+import Product from "@/libs/models/Product";
+import { connectMongoDB } from "@/libs/MongoConnext";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
     try {
-
         const body = await request.json();
-        const { imgSrc, fileKey, name, category, price } = body;
+        const{ imgSrc, fileKey, name, category, price } = body;
 
-
-        await connectMongoDB()
+        await connectMongoDB();
 
         const data = await Product.create({
             imgSrc, 
@@ -19,12 +17,13 @@ export async function POST(request: NextRequest) {
             price,
         });
 
-        return NextResponse.json({msg: "Product added successfully", data});
+      return NextResponse.json({msg: "Product added", data});
     } catch (error) {
-        return NextResponse.json({
+      return NextResponse.json(
+        { 
             error,
-            msg:  " Something went wrong ",
+            msg: "Something went wrong"
         }, 
-        {status: 400})
-    };
+    {status: 400});
+ };
 };

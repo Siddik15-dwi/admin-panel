@@ -1,13 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface IProduct {
-    _id: string;
-    imgSrc: string;
-    fileKey: string;
-    name: string;
-    price: string;
-    category: string; 
-}
+import { IProduct } from "@/app/admin/dashboard/page";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 const initialState: IProduct = {
     _id: "",
@@ -15,15 +7,15 @@ const initialState: IProduct = {
     fileKey: "",
     name: "",
     price: "",
-    category: "",  
-};
+    category: "",
+}
 
 export const productSlice = createSlice({
     name: "productSlice",
     initialState,
     reducers: {
         setProduct: (state, action: PayloadAction<IProduct>) => {
-            return { ...state, ...action.payload };  
+            return action.payload;
         },
     },
 });

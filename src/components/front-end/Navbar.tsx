@@ -54,4 +54,4 @@ const Navbar = ({setShowCart}:PropsType) => {
   </div>
 };
 
-export default Navbar
+export default Navbar;
